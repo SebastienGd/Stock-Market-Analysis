@@ -5,7 +5,7 @@ from orders import *
 
 class Hammer:
     def __init__(self, data=Data, target=int, p_l_ratio=int):
-        self.data = data or Data()
+        self.data = data.get_data()
         self.target = target
         self.p_l_ratio = p_l_ratio
         self.trend = None
@@ -15,7 +15,7 @@ class Hammer:
 
     def find_trend(self):
         highest_or_lowest = []
-        for candle in self.data.get_data():
+        for candle in self.data:
             if not highest_or_lowest:
                 highest_or_lowest.append(candle)
             else:
@@ -44,10 +44,10 @@ class Hammer:
             return self.order.sell(sell_price)
 
     def strategy(self):
-        print(len(self.data.get_data()))
+        print(len(self.data))
         orders = []
         highest_or_lowest = []
-        for candle in self.data.get_data():
+        for candle in self.data:
             # Finding the trend
             if not highest_or_lowest:
                 highest_or_lowest.append(candle)
@@ -85,7 +85,7 @@ class Hammer:
 
 class MovingAverageCrossover:
     def __init__(self, data=None, short_window=20, long_window=50):
-        self.data = data or Data()
+        self.data = data.get_data()
         self.short_window = short_window
         self.long_window = long_window
         self.order = Order()
@@ -93,12 +93,12 @@ class MovingAverageCrossover:
 
     def strategy(self):
         orders = []
-        data = self.data.get_data()
-        print(len(data))
-        starting_short = data[self.long_window - self.short_window : self.long_window]
-        starting_long = data[: self.long_window]
+        starting_short = self.data[
+            self.long_window - self.short_window : self.long_window
+        ]
+        starting_long = self.data[: self.long_window]
 
-        for candle in data[self.long_window :]:
+        for candle in self.data[self.long_window :]:
             starting_short.append(candle)
             starting_short = starting_short[1:]
             starting_long.append(candle)

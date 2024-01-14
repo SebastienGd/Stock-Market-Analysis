@@ -1,5 +1,5 @@
 from polygon import RESTClient
-import csv
+
 
 client = RESTClient(api_key="d2YVvfDXc7194T3DfmkehnCAT57IUFV7")
 
@@ -27,18 +27,3 @@ class Data:
             limit=self.limit,
         )
         return [candle for candle in candles]
-
-
-data = Data(
-    ticker="NIO",
-    timespan="minute",
-    start_date="2022-01-01",
-    end_date="2022-02-01",
-    multiplier=5,
-    sort="asc",
-    limit=50000,
-).get_data()
-
-
-with open("data.csv", "a") as f:
-    writer = csv.writer(f, delimiter=",")
