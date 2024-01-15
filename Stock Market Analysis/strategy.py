@@ -44,7 +44,6 @@ class Hammer:
             return self.order.sell(sell_price)
 
     def strategy(self):
-        print(len(self.data))
         orders = []
         highest_or_lowest = []
         for candle in self.data:

@@ -37,9 +37,9 @@ class Simulation:
         return all_dates
 
 
-# with open("data.csv", "a") as f:
+# with open("results.csv", "a") as f:
 #     writer = csv.writer(f, delimiter=",")
-#     dates = Simulation.change_dates_by_a_month("2022-05-01", "2022-09-01")
+#     dates = Simulation.change_dates_by_a_month("2023-05-01", "2023-10-01")
 #     i = 0
 #     while i < len(dates) - 1:
 #         start_date = dates[i]
@@ -53,6 +53,6 @@ class Simulation:
 #             sort="asc",
 #             limit=50000,
 #         )
-#         print(dates[i])
-#         writer.writerow([f"De {start_date} à {end_date}", data])
+#         sim = Simulation(Hammer(data, 0.5 / 100, 2))
+#         writer.writerow([f"From {start_date} to {end_date}", sim.run_simulation()])
 #         i += 1
