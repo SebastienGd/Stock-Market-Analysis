@@ -3,7 +3,7 @@
 This project provides a framework for testing and comparing different trading strategies using historical market data, allowing users to analyze and refine their trading approaches in a simulated environment.
 
 Data Handling (data.py):
-This module contains functionality to fetch historical financial market data. It involves retrieving data from a Polygon.io API.
+This module contains functionality to fetch historical financial market data. It involves retrieving data from Polygon.io's API.
 
 Order Execution (orders.py):
 This module handles the execution of buy and sell orders in the simulated trading environment.
