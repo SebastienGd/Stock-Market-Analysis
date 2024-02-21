@@ -1,5 +1,5 @@
 from polygon import RESTClient
-
+import polygon
 
 client = RESTClient(api_key="d2YVvfDXc7194T3DfmkehnCAT57IUFV7")
 

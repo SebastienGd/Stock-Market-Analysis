@@ -1,5 +1,5 @@
 from data import *
-from strategy import *
+from strategies import *
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import csv
@@ -36,23 +36,25 @@ class Simulation:
 
         return all_dates
 
+    def write_CSV(self, start_period, end_period):
+        with open("resultss.csv", "a") as f:
+            writer = csv.writer(f, delimiter=",")
+            dates = Simulation.change_dates_by_a_month(start_period, end_period)
+            i = 0
+            while i < len(dates) - 1:
+                start_date = dates[i]
+                end_date = dates[i + 1]
+                data = Data(
+                    ticker="NIO",
+                    timespan="minute",
+                    start_date=start_date,
+                    end_date=end_date,
+                    multiplier=5,
+                    sort="asc",
+                    limit=50000,
+                )
+                writer.writerow([f"From {start_date} to {end_date}", Simulation(Hammer(data, 0.5 / 100, 2)).run_simulation()])
+                i += 1
 
-# with open("results.csv", "a") as f:
-#     writer = csv.writer(f, delimiter=",")
-#     dates = Simulation.change_dates_by_a_month("2023-05-01", "2023-10-01")
-#     i = 0
-#     while i < len(dates) - 1:
-#         start_date = dates[i]
-#         end_date = dates[i + 1]
-#         data = Data(
-#             ticker="NIO",
-#             timespan="minute",
-#             start_date=start_date,
-#             end_date=end_date,
-#             multiplier=5,
-#             sort="asc",
-#             limit=50000,
-#         )
-#         sim = Simulation(Hammer(data, 0.5 / 100, 2))
-#         writer.writerow([f"From {start_date} to {end_date}", sim.run_simulation()])
-#         i += 1
+
+
