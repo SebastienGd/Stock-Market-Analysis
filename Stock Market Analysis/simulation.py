@@ -23,9 +23,9 @@ class Simulation:
         return f"Profits: {total_profits}, Winrate: {win_rate}, Number of trades: {len(results)}"
 
     @staticmethod
-    def change_dates_by_a_month(start_date_str, end_date_str):
-        start_date = datetime.strptime(start_date_str, "%Y-%m-%d")
-        end_date = datetime.strptime(end_date_str, "%Y-%m-%d")
+    def change_dates_by_a_month(start_date : str, end_date : str):
+        start_date = datetime.strptime(start_date, "%Y-%m-%d")
+        end_date = datetime.strptime(end_date, "%Y-%m-%d")
 
         current_date = start_date
         all_dates = []
@@ -36,16 +36,16 @@ class Simulation:
 
         return all_dates
 
-    def write_CSV(self, start_period, end_period):
-        with open("resultss.csv", "a") as f:
-            writer = csv.writer(f, delimiter=",")
+    @staticmethod
+    def write_CSV(file_name: str, start_period: str, end_period: str, percentage_gain: int, risk_reward_ratio: int, ticker: str):
+        with open(file_name, "a") as f:
             dates = Simulation.change_dates_by_a_month(start_period, end_period)
             i = 0
             while i < len(dates) - 1:
                 start_date = dates[i]
                 end_date = dates[i + 1]
                 data = Data(
-                    ticker="NIO",
+                    ticker=ticker,
                     timespan="minute",
                     start_date=start_date,
                     end_date=end_date,
@@ -53,7 +53,7 @@ class Simulation:
                     sort="asc",
                     limit=50000,
                 )
-                writer.writerow([f"From {start_date} to {end_date}", Simulation(Hammer(data, 0.5 / 100, 2)).run_simulation()])
+                csv.writer(f, delimiter=",").writerow([f"From {start_date} to {end_date}", Simulation(Hammer(data, percentage_gain, risk_reward_ratio)).run_simulation()])
                 i += 1
 
 

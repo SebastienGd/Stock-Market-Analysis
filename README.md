@@ -37,4 +37,6 @@ Simulation(
     ),
 ).run_simulation()
 
+Simulation.write_CSV("hello", "2022-03-13", "2022-04-13", 0.5/100, 2, "NIO")
+
 ```

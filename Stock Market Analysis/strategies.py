@@ -3,7 +3,7 @@ from orders import *
 
 
 class Hammer:
-    def __init__(self, data=Data, target=int, p_l_ratio=int):
+    def __init__(self, data: Data, target: int, p_l_ratio: int):
         self.data = data.get_data()
         self.target = target
         self.p_l_ratio = p_l_ratio
