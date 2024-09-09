@@ -2,17 +2,17 @@
 
 This project provides a framework for testing and comparing different trading strategies using historical market data, allowing users to analyze and refine their trading approaches in a simulated environment.
 
-Data Handling (data.py):
+## Data Handling (data.py):
 This module contains functionality to fetch historical financial market data. It involves retrieving data from Polygon.io's API.
 
-Order Execution (orders.py):
+## Order Execution (orders.py):
 This module handles the execution of buy and sell orders in the simulated trading environment.
 
-Trading Strategies (strategy.py):
+## Trading Strategies (strategy.py)
 Different trading strategies are implemented as classes. Two strategies are provided: Hammer and MovingAverageCrossover.
 Each strategy class contains methods to analyze market data and generate buy/sell signals based on certain conditions defined within the strategy.
 
-Simulation (simulation.py):
+## Simulation (simulation.py)
 The Simulation class orchestrates the entire simulation process.
 It takes a trading strategy object as input during initialization.
 The run_simulation() method executes the selected strategy and evaluates its performance.
